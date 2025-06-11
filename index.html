@@ -23,6 +23,10 @@
                 <li class="nav-item"><a class="nav-link" href="#">Actualités</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Annuaire</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Documents</a></li>
+                <li class="nav-item"><a class="nav-link" href="plannings.html">Plannings</a></li>
+                <li class="nav-item"><a class="nav-link" href="affichage.html">Affichage libre</a></li>
+                <li class="nav-item"><a class="nav-link" href="pointeuse.html">Pointeuse</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" onclick="openGestion()">Gestion</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
             </ul>
         </div>
@@ -66,6 +70,14 @@
             </div>
         </div>
     </div>
+
+    <section class="mt-5">
+        <h2>Poster une annonce</h2>
+        <div class="mb-3">
+            <textarea id="annonceTexte" class="form-control" rows="3"></textarea>
+        </div>
+        <button id="posterAnnonce" class="btn btn-danger">Publier</button>
+    </section>
 </main>
 
 <footer class="bg-light text-center py-3">
@@ -74,6 +86,33 @@
     </div>
 </footer>
 
+<div class="modal" id="annonceModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content bg-danger text-white">
+            <div class="modal-body" id="annonceContenu"></div>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-VgpCB1txz4YKMWz36v3wrPVoi5f2SsOIQKcFmIc9nrgEU6jZ3RxBcRmTkb5y0dFl" crossorigin="anonymous"></script>
+<script>
+document.getElementById('posterAnnonce').addEventListener('click', function() {
+    var text = document.getElementById('annonceTexte').value.trim();
+    if (text) {
+        document.getElementById('annonceContenu').textContent = text;
+        var modal = new bootstrap.Modal(document.getElementById('annonceModal'));
+        modal.show();
+    }
+});
+
+function openGestion() {
+    var pwd = prompt('Mot de passe ?');
+    if (pwd === 'ADMIN') {
+        window.location.href = 'gestion.html';
+    } else if (pwd !== null) {
+        alert('Mot de passe incorrect');
+    }
+}
+</script>
 </body>
 </html>
